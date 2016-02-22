@@ -45,7 +45,7 @@ redis_sqlite_tao = Taod(redis_adapter, sqlite_adapter, time='logical')
 
 After this initial setup, you can use the same operations as the TAO's API described in Facebook's paper.
 
-* Object API:
+* **Object API**
 ```
 Object: (id) → (otype, (k → v)*)
   Typed nodes that are identified by a 64-bit integer (id) that is unique across all objects
@@ -56,7 +56,7 @@ Object: (id) → (otype, (k → v)*)
   obj_get(id): returns type and fields of an object
 ```
 
-* Association API
+* **Association API**
 ```
 Association: (id1, atype, id2) → (time, (key → value)*)
   Typed directed edges between objects that are identified by the source object (id1), association type (atype) and destination object (id2)
@@ -66,7 +66,7 @@ Association: (id1, atype, id2) → (time, (key → value)*)
   assoc_change_type(id1, atype, id2, newtype): changes the association (id1, atype, id2) to (id1, newtype, id2).
 ```
 
-* Association Query API
+* **Association Query API**
 ```
 Association Lists: (id1, atype) → [anew ... aold].
   We define an association list to be the list of all associations with a particular id1 and atype, arranged in descending order by the time field: (id1, atype) → [anew ... aold]
@@ -117,7 +117,7 @@ This repository includes `Dockerfile` for development and for running `TaoD`.
 Run `redis_sqlite` example ([Dockerfile](examples/Dockerfile.redis_sqlite))
 ```shell
 # to build image
-docker build --rm=true -t jfloff/taod .
+docker build -f examples/Dockerfile.redis_sqlite --rm=true -t jfloff/taod .
 # start redis server
 docker run --name=redis --rm -ti redis
 # start python container linked with redis to run example
